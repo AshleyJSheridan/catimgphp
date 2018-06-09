@@ -1,0 +1,484 @@
+#!/usr/bin/env php
+<?php
+$colours = [
+	new Colour(0, 0, 0),
+	new Colour(128, 0, 0),
+	new Colour(0, 128, 0),
+	new Colour(128, 128, 0),
+	new Colour(0, 0, 128),
+	new Colour(128, 0, 128),
+	new Colour(0, 128, 128),
+	new Colour(192, 192, 192),
+	new Colour(128, 128, 128),
+	new Colour(255, 0, 0),
+	new Colour(0, 255, 0),
+	new Colour(255, 255, 0),
+	new Colour(0, 0, 255),
+	new Colour(255, 0, 255),
+	new Colour(0, 255, 255),
+	new Colour(255, 255, 255),
+	new Colour(0, 0, 0),
+	new Colour(0, 0, 95),
+	new Colour(0, 0, 135),
+	new Colour(0, 0, 175),
+	new Colour(0, 0, 215),
+	new Colour(0, 0, 255),
+	new Colour(0, 95, 0),
+	new Colour(0, 95, 95),
+	new Colour(0, 95, 135),
+	new Colour(0, 95, 175),
+	new Colour(0, 95, 215),
+	new Colour(0, 95, 255),
+	new Colour(0, 135, 0),
+	new Colour(0, 135, 95),
+	new Colour(0, 135, 135),
+	new Colour(0, 135, 175),
+	new Colour(0, 135, 215),
+	new Colour(0, 135, 255),
+	new Colour(0, 175, 0),
+	new Colour(0, 175, 95),
+	new Colour(0, 175, 135),
+	new Colour(0, 175, 175),
+	new Colour(0, 175, 215),
+	new Colour(0, 175, 255),
+	new Colour(0, 215, 0),
+	new Colour(0, 215, 95),
+	new Colour(0, 215, 135),
+	new Colour(0, 215, 175),
+	new Colour(0, 215, 215),
+	new Colour(0, 215, 255),
+	new Colour(0, 255, 0),
+	new Colour(0, 255, 95),
+	new Colour(0, 255, 135),
+	new Colour(0, 255, 175),
+	new Colour(0, 255, 215),
+	new Colour(0, 255, 255),
+	new Colour(95, 0, 0),
+	new Colour(95, 0, 95),
+	new Colour(95, 0, 135),
+	new Colour(95, 0, 175),
+	new Colour(95, 0, 215),
+	new Colour(95, 0, 255),
+	new Colour(95, 95, 0),
+	new Colour(95, 95, 95),
+	new Colour(95, 95, 135),
+	new Colour(95, 95, 175),
+	new Colour(95, 95, 215),
+	new Colour(95, 95, 255),
+	new Colour(95, 135, 0),
+	new Colour(95, 135, 95),
+	new Colour(95, 135, 135),
+	new Colour(95, 135, 175),
+	new Colour(95, 135, 215),
+	new Colour(95, 135, 255),
+	new Colour(95, 175, 0),
+	new Colour(95, 175, 95),
+	new Colour(95, 175, 135),
+	new Colour(95, 175, 175),
+	new Colour(95, 175, 215),
+	new Colour(95, 175, 255),
+	new Colour(95, 215, 0),
+	new Colour(95, 215, 95),
+	new Colour(95, 215, 135),
+	new Colour(95, 215, 175),
+	new Colour(95, 215, 215),
+	new Colour(95, 215, 255),
+	new Colour(95, 255, 0),
+	new Colour(95, 255, 95),
+	new Colour(95, 255, 135),
+	new Colour(95, 255, 175),
+	new Colour(95, 255, 215),
+	new Colour(95, 255, 255),
+	new Colour(135, 0, 0),
+	new Colour(135, 0, 95),
+	new Colour(135, 0, 135),
+	new Colour(135, 0, 175),
+	new Colour(135, 0, 215),
+	new Colour(135, 0, 255),
+	new Colour(135, 95, 0),
+	new Colour(135, 95, 95),
+	new Colour(135, 95, 135),
+	new Colour(135, 95, 175),
+	new Colour(135, 95, 215),
+	new Colour(135, 95, 255),
+	new Colour(135, 135, 0),
+	new Colour(135, 135, 95),
+	new Colour(135, 135, 135),
+	new Colour(135, 135, 175),
+	new Colour(135, 135, 215),
+	new Colour(135, 135, 255),
+	new Colour(135, 175, 0),
+	new Colour(135, 175, 95),
+	new Colour(135, 175, 135),
+	new Colour(135, 175, 175),
+	new Colour(135, 175, 215),
+	new Colour(135, 175, 255),
+	new Colour(135, 215, 0),
+	new Colour(135, 215, 95),
+	new Colour(135, 215, 135),
+	new Colour(135, 215, 175),
+	new Colour(135, 215, 215),
+	new Colour(135, 215, 255),
+	new Colour(135, 255, 0),
+	new Colour(135, 255, 95),
+	new Colour(135, 255, 135),
+	new Colour(135, 255, 175),
+	new Colour(135, 255, 215),
+	new Colour(135, 255, 255),
+	new Colour(175, 0, 0),
+	new Colour(175, 0, 95),
+	new Colour(175, 0, 135),
+	new Colour(175, 0, 175),
+	new Colour(175, 0, 215),
+	new Colour(175, 0, 255),
+	new Colour(175, 95, 0),
+	new Colour(175, 95, 95),
+	new Colour(175, 95, 135),
+	new Colour(175, 95, 175),
+	new Colour(175, 95, 215),
+	new Colour(175, 95, 255),
+	new Colour(175, 135, 0),
+	new Colour(175, 135, 95),
+	new Colour(175, 135, 135),
+	new Colour(175, 135, 175),
+	new Colour(175, 135, 215),
+	new Colour(175, 135, 255),
+	new Colour(175, 175, 0),
+	new Colour(175, 175, 95),
+	new Colour(175, 175, 135),
+	new Colour(175, 175, 175),
+	new Colour(175, 175, 215),
+	new Colour(175, 175, 255),
+	new Colour(175, 215, 0),
+	new Colour(175, 215, 95),
+	new Colour(175, 215, 135),
+	new Colour(175, 215, 175),
+	new Colour(175, 215, 215),
+	new Colour(175, 215, 255),
+	new Colour(175, 255, 0),
+	new Colour(175, 255, 95),
+	new Colour(175, 255, 135),
+	new Colour(175, 255, 175),
+	new Colour(175, 255, 215),
+	new Colour(175, 255, 255),
+	new Colour(215, 0, 0),
+	new Colour(215, 0, 95),
+	new Colour(215, 0, 135),
+	new Colour(215, 0, 175),
+	new Colour(215, 0, 215),
+	new Colour(215, 0, 255),
+	new Colour(215, 95, 0),
+	new Colour(215, 95, 95),
+	new Colour(215, 95, 135),
+	new Colour(215, 95, 175),
+	new Colour(215, 95, 215),
+	new Colour(215, 95, 255),
+	new Colour(215, 135, 0),
+	new Colour(215, 135, 95),
+	new Colour(215, 135, 135),
+	new Colour(215, 135, 175),
+	new Colour(215, 135, 215),
+	new Colour(215, 135, 255),
+	new Colour(215, 175, 0),
+	new Colour(215, 175, 95),
+	new Colour(215, 175, 135),
+	new Colour(215, 175, 175),
+	new Colour(215, 175, 215),
+	new Colour(215, 175, 255),
+	new Colour(215, 215, 0),
+	new Colour(215, 215, 95),
+	new Colour(215, 215, 135),
+	new Colour(215, 215, 175),
+	new Colour(215, 215, 215),
+	new Colour(215, 215, 255),
+	new Colour(215, 255, 0),
+	new Colour(215, 255, 95),
+	new Colour(215, 255, 135),
+	new Colour(215, 255, 175),
+	new Colour(215, 255, 215),
+	new Colour(215, 255, 255),
+	new Colour(255, 0, 0),
+	new Colour(255, 0, 95),
+	new Colour(255, 0, 135),
+	new Colour(255, 0, 175),
+	new Colour(255, 0, 215),
+	new Colour(255, 0, 255),
+	new Colour(255, 95, 0),
+	new Colour(255, 95, 95),
+	new Colour(255, 95, 135),
+	new Colour(255, 95, 175),
+	new Colour(255, 95, 215),
+	new Colour(255, 95, 255),
+	new Colour(255, 135, 0),
+	new Colour(255, 135, 95),
+	new Colour(255, 135, 135),
+	new Colour(255, 135, 175),
+	new Colour(255, 135, 215),
+	new Colour(255, 135, 255),
+	new Colour(255, 175, 0),
+	new Colour(255, 175, 95),
+	new Colour(255, 175, 135),
+	new Colour(255, 175, 175),
+	new Colour(255, 175, 215),
+	new Colour(255, 175, 255),
+	new Colour(255, 215, 0),
+	new Colour(255, 215, 95),
+	new Colour(255, 215, 135),
+	new Colour(255, 215, 175),
+	new Colour(255, 215, 215),
+	new Colour(255, 215, 255),
+	new Colour(255, 255, 0),
+	new Colour(255, 255, 95),
+	new Colour(255, 255, 135),
+	new Colour(255, 255, 175),
+	new Colour(255, 255, 215),
+	new Colour(255, 255, 255),
+	new Colour(8, 8, 8),
+	new Colour(18, 18, 18),
+	new Colour(28, 28, 28),
+	new Colour(38, 38, 38),
+	new Colour(48, 48, 48),
+	new Colour(58, 58, 58),
+	new Colour(68, 68, 68),
+	new Colour(78, 78, 78),
+	new Colour(88, 88, 88),
+	new Colour(98, 98, 98),
+	new Colour(108, 108, 108),
+	new Colour(118, 118, 118),
+	new Colour(128, 128, 128),
+	new Colour(138, 138, 138),
+	new Colour(148, 148, 148),
+	new Colour(158, 158, 158),
+	new Colour(168, 168, 168),
+	new Colour(178, 178, 178),
+	new Colour(188, 188, 188),
+	new Colour(198, 198, 198),
+	new Colour(208, 208, 208),
+	new Colour(218, 218, 218),
+	new Colour(228, 228, 228),
+	new Colour(238, 238, 238),
+];
+
+$img_url = !empty($argv[1])?$argv[1]:'';
+try
+{
+	$image_helper = new ImageHelper($img_url);
+	$colour_helper = new ColourHelper($colours);
+	$terminal_helper = new TerminalHelper($colour_helper);
+	$terminal_helper->draw_in_console($image_helper->image);
+}
+catch(PathException $e)
+{
+	die($e->getMessage() . "\n");
+}
+catch(ImageFormatException $e)
+{
+	die($e->getMessage() . "\n");
+}
+
+class ImageHelper
+{
+	public $image;
+	
+	public function __construct($url)
+	{
+		if(!file_exists($url))
+			throw new PathException("Path does not exist: '$url'");
+			
+		$this->read_image($url);
+	}
+
+	private function read_image($url)
+	{
+		$extension = substr($url, strrpos($url, '.') + 1);
+		
+		switch($extension)
+		{
+			case 'png':
+				$this->image = new Image(imagecreatefrompng($url));
+				break;
+			case 'gif':
+				$this->image = new Image(imagecreatefromgif($url));
+				break;
+			case 'jpg':
+			case 'jpeg':
+				$this->image = new Image(imagecreatefromjpeg($url));
+				break;
+			default:
+				throw new ImageFormatException("Unrecognised image extension: $extension");
+		}
+	}
+}
+
+class TerminalHelper
+{
+	private $colour_helper;
+	private $cols;
+	private $rows;
+	
+	public function __construct(ColourHelper $colour_helper)
+	{
+		$this->colour_helper = $colour_helper;
+	}
+	
+	public function draw_in_console(Image $image)
+	{
+		// -1 from the rows and cols to avoid wrapping in the console
+		$cols = $this->get_cols() - 1;
+		$rows = $this->get_rows() - 1;
+		
+		$image_step = $this->get_step($image->width, $image->height);
+		
+		$output_buffer = '';
+		
+		for($y = 0; $y < $image->height; $y += $image_step)
+		{
+			for($x = 0; $x < $image->width; $x += $image_step)
+			{
+				$pixel_colour_value = imagecolorat($image->image, $x, $y);
+				$closest_colour = $this->colour_helper->get_closest_colour($pixel_colour_value);
+				
+				$output_buffer .= $this->output_colour_cell($closest_colour);
+			}
+			$output_buffer .= $this->output_end_row();
+		}
+		
+		echo $output_buffer;
+	}
+
+	public function get_cols()
+	{
+		if(!$this->cols)
+		{
+			$this->cols = exec('tput cols');
+		}
+		
+		return $this->cols;
+	}
+
+	public function get_rows()
+	{
+		if(!$this->rows)
+		{
+			$this->rows = exec('tput lines');
+		}
+		
+		return $this->rows;
+	}
+	
+	private function output_colour_cell($colour_index)
+	{
+		return "\033[48;5;{$colour_index}m ";
+	}
+	
+	private function output_end_row()
+	{
+		return $this->output_colour_cell(0) . "\n";
+	}
+	
+	private function get_step($image_width, $image_height)
+	{
+		if($image_height > $image_width)
+		{
+			$step = $image_height / $this->rows;
+		}
+		else
+		{
+			$step = $image_width / $this->cols;
+		}
+		
+		return $step;
+	}
+}
+
+class ColourHelper
+{
+	private $colours;
+	
+	public function __construct($colours)
+	{
+		$this->colours = $colours;
+	}
+
+	public function get_closest_colour($colour_value)
+	{
+		$lowest_difference = null;
+		$matched_colour_index = null;
+		$colour_to_find = $this->get_colour_from_number($colour_value);
+		
+		foreach($this->colours as $index => $colour)
+		{
+			$difference = sqrt(
+				pow($colour_to_find->r - $colour->r, 2) +
+				pow($colour_to_find->g - $colour->g, 2) + 
+				pow($colour_to_find->b - $colour->b, 2)
+			);
+			
+			if($difference == 0)
+			{
+				return $index;
+			}
+			
+			if(is_null($lowest_difference) || $difference < $lowest_difference)
+			{
+				$lowest_difference = $difference;
+				$matched_colour_index = $index;
+			}
+		}
+		
+		return $matched_colour_index;
+	}
+	
+	private function get_colour_from_number($pixel_colour_value)
+	{
+		$r = ($pixel_colour_value >> 16) & 0xFF;
+		$g = ($pixel_colour_value >> 8) & 0xFF;
+		$b = $pixel_colour_value & 0xFF;
+		
+		return new Colour($r, $g, $b);
+	}
+}
+
+class Image
+{
+	public $image;
+	public $width;
+	public $height;
+	
+	public function __construct($image)
+	{
+		$this->image = $image;
+		$this->width = imagesx($image);
+		$this->height = imagesy($image);
+	}
+}
+
+class Colour
+{
+	public $r;
+	public $g;
+	public $b;
+
+	public function __construct($r, $g, $b)
+	{
+		$this->r = $r;
+		$this->g = $g;
+		$this->b = $b;
+	}
+}
+
+class PathException extends \Exception
+{
+	public function __construct($message, $code = 0, Exception $previous = null)
+	{
+		parent::__construct($message, $code, $previous);
+	}
+}
+
+class ImageFormatException extends \Exception
+{
+	public function __construct($message, $code = 0, Exception $previous = null)
+	{
+		parent::__construct($message, $code, $previous);
+	}
+}
