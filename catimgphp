@@ -406,6 +406,9 @@ class ColourHelper
 		$matched_colour_index = null;
 		$colour_to_find = $this->get_colour_from_number($colour_value);
 		
+		if(isset($this->matched_colours[$colour_value]))
+			return $this->matched_colours[$colour_value];
+		
 		foreach($this->colours as $index => $colour)
 		{
 			$difference = sqrt(
@@ -416,6 +419,7 @@ class ColourHelper
 			
 			if($difference == 0)
 			{
+				$this->matched_colours[$colour_value] = $index;
 				return $index;
 			}
 			
@@ -425,6 +429,7 @@ class ColourHelper
 				$matched_colour_index = $index;
 			}
 		}
+		$this->matched_colours[$colour_value] = $matched_colour_index;
 		
 		return $matched_colour_index;
 	}
