@@ -258,12 +258,17 @@ $colours = [
 	new Colour(228, 228, 228),
 	new Colour(238, 238, 238),
 ];
+$palette = imagecreate(16, 16); // 256 colours
+foreach($colours as $colour)
+{
+	imagecolorallocate($palette, $colour->r, $colour->g, $colour->b);
+}
 
 $img_url = !empty($argv[1])?$argv[1]:'';
 try
 {
 	$image_helper = new ImageHelper($img_url);
-	$colour_helper = new ColourHelper($colours);
+	$colour_helper = new ColourHelper($palette);
 	$terminal_helper = new TerminalHelper($colour_helper);
 	$terminal_helper->draw_in_console($image_helper->image);
 }
@@ -393,45 +398,18 @@ class TerminalHelper
 
 class ColourHelper
 {
-	private $colours;
+	private $palette_image;
 	
-	public function __construct($colours)
+	public function __construct($palette_image)
 	{
-		$this->colours = $colours;
+		$this->palette_image = $palette_image;
 	}
 
 	public function get_closest_colour($colour_value)
 	{
-		$lowest_difference = null;
-		$matched_colour_index = null;
 		$colour_to_find = $this->get_colour_from_number($colour_value);
 		
-		if(isset($this->matched_colours[$colour_value]))
-			return $this->matched_colours[$colour_value];
-		
-		foreach($this->colours as $index => $colour)
-		{
-			$difference = sqrt(
-				pow($colour_to_find->r - $colour->r, 2) +
-				pow($colour_to_find->g - $colour->g, 2) + 
-				pow($colour_to_find->b - $colour->b, 2)
-			);
-			
-			if($difference == 0)
-			{
-				$this->matched_colours[$colour_value] = $index;
-				return $index;
-			}
-			
-			if(is_null($lowest_difference) || $difference < $lowest_difference)
-			{
-				$lowest_difference = $difference;
-				$matched_colour_index = $index;
-			}
-		}
-		$this->matched_colours[$colour_value] = $matched_colour_index;
-		
-		return $matched_colour_index;
+		return imagecolorclosest($this->palette_image, $colour_to_find->r, $colour_to_find->g, $colour_to_find->b);
 	}
 	
 	private function get_colour_from_number($pixel_colour_value)
