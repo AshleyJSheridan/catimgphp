@@ -336,14 +336,17 @@ class TerminalHelper
 		
 		$output_buffer = '';
 		
-		for($y = 0; $y < $image->height; $y += $image_step)
+		for($y = 0; $y < $image->height; $y += $image_step * 2)
 		{
 			for($x = 0; $x < $image->width; $x += $image_step)
 			{
-				$pixel_colour_value = imagecolorat($image->image, $x, $y);
-				$closest_colour = $this->colour_helper->get_closest_colour($pixel_colour_value);
+				$pixel_colour_background_value = imagecolorat($image->image, $x, $y);
+				$closest_colour_background = $this->colour_helper->get_closest_colour($pixel_colour_background_value);
 				
-				$output_buffer .= $this->output_colour_cell($closest_colour);
+				$pixel_colour_foreground_value = imagecolorat($image->image, $x, $y + $image_step);
+				$closest_colour_foreground = $this->colour_helper->get_closest_colour($pixel_colour_foreground_value);
+				
+				$output_buffer .= $this->output_colour_cells($closest_colour_background, $closest_colour_foreground);
 			}
 			$output_buffer .= $this->output_end_row();
 		}
@@ -371,14 +374,14 @@ class TerminalHelper
 		return $this->rows;
 	}
 	
-	private function output_colour_cell($colour_index)
+	private function output_colour_cells($background, $foreground)
 	{
-		return "\033[48;5;{$colour_index}m ";
+		return "\033[48;5;{$background};38;5;{$foreground}m▄";
 	}
-	
+
 	private function output_end_row()
 	{
-		return $this->output_colour_cell(0) . "\n";
+		return "\033[48;5;0;38;5;7m\n";
 	}
 	
 	private function get_step($image_width, $image_height)
@@ -392,7 +395,7 @@ class TerminalHelper
 			$step = $image_width / $this->cols;
 		}
 		
-		return $step;
+		return $step / 2;
 	}
 }
 
