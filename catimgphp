@@ -336,9 +336,9 @@ class TerminalHelper
 		//var_dump($image_step);exit;
 		$output_buffer = '';
 		
-		for($y = 0; $y < $image->height; $y += $image_step * 2)
+		for($y = 0; $y + $image_step < $image->height; $y += $image_step * 2)
 		{
-			for($x = 0; $x < $image->width; $x += $image_step)
+			for($x = 0; $x + $image_step < $image->width; $x += $image_step)
 			{
 				$pixel_colour_background_value = imagecolorat($image->image, $x, $y);
 				$closest_colour_background = $this->colour_helper->get_closest_colour($pixel_colour_background_value);

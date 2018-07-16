@@ -28,9 +28,11 @@ Currently, only JPG, GIF, and PNG images are supported because of the use of GD 
 ## Results
 
 This is the higher quality version that matches more closely the results of the original `catimg` tool. The colours on this are a little better with less blurring than `catimg`
+
 ![](https://raw.githubusercontent.com/AshleyJSheridan/catimgphp/master/examples/result_high_quality.jpg)
 
 This is the older result from the initial attempt at the script
+
 ![](https://raw.githubusercontent.com/AshleyJSheridan/catimgphp/master/examples/result.jpg)
 
 ## Future Improvements
