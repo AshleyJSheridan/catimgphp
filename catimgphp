@@ -333,7 +333,7 @@ class TerminalHelper
 		$rows = $this->get_rows() - 1;
 		
 		$image_step = $this->get_step($image->width, $image->height);
-		
+		//var_dump($image_step);exit;
 		$output_buffer = '';
 		
 		for($y = 0; $y < $image->height; $y += $image_step * 2)
@@ -388,14 +388,14 @@ class TerminalHelper
 	{
 		if($image_height > $image_width)
 		{
-			$step = $image_height / $this->rows;
+			$step = $image_height / ($this->rows - 1);
+			return $step / 2;
 		}
 		else
 		{
-			$step = $image_width / $this->cols;
+			$step = $image_width / ($this->cols - 1);
+			return $step;
 		}
-		
-		return $step / 2;
 	}
 }
 
